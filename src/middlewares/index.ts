@@ -1,1 +1,1 @@
-export { default as searchFiles } from './search'
+export { default as string } from './string'

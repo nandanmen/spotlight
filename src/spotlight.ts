@@ -1,12 +1,12 @@
 import { Middleware } from './types'
-import { searchFiles } from './middlewares'
+import * as defaults from './middlewares'
 
 class Spotlight<T> {
   searchContext: T[]
   middlewares: Middleware<T>[]
 
   constructor(searchContext: T[], ...middlewares: Middleware<T>[]) {
-    const defaultMiddleware: Middleware<T>[] = [searchFiles]
+    const defaultMiddleware: Middleware<T>[] = [defaults.string]
 
     this.searchContext = searchContext
     this.middlewares = defaultMiddleware.concat(middlewares)
