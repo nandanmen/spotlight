@@ -6,7 +6,7 @@ A recreation of the MacOS [Spotlight](https://support.apple.com/en-us/HT204014) 
 
 ### File Search
 
-- [ ] Performs basic file search
+- [X] Performs basic file search
 - [ ] Narrows search using file metadata; e.g. `kind:folders` will only search folders
 - [ ] Interprets boolean operators &mdash; AND, OR, NOT
 
