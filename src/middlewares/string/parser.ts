@@ -13,14 +13,20 @@ export default function parse(input: string) {
   if (words.length) {
     const isOperator = isBooleanOperator(words[0])
     let root = new Node(isOperator ? 'operator' : 'query', words[0])
+    let prev = root
     words.slice(1).forEach(word => {
       if (isBooleanOperator(word)) {
         const node = new Node('operator', word)
         node.addChild(root)
+        prev = node
         root = node
       } else {
         const node = new Node('query', word)
-        root.addChild(node)
+        if (prev.type === 'query') {
+          prev.value = [prev.value, node.value].join(' ')
+        } else {
+          root.addChild(node)
+        }
       }
     })
     return root

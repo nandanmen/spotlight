@@ -1,7 +1,7 @@
-function match<T>(input: string, context: T[]) {
-  return context.filter(value => new RegExp(input).test(String(value)))
-}
+import parse from './parser'
+import evaluate from './evaluator'
 
 export default function stringMiddleware<T>(input: string, context: T[]): T[] {
-  return match(input, context)
+  const tree = parse(input)
+  return tree ? evaluate(tree, context) : []
 }

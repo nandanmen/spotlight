@@ -14,7 +14,8 @@ describe('string middleware', () => {
     describe('boolean operators', () => {
       it('interprets NOT', () => {
         expect(stringMiddleware('a NOT an', context)).toIncludeSameMembers([
-          'apple'
+          'apple',
+          'watermelon'
         ])
       })
 
@@ -33,9 +34,9 @@ describe('string middleware', () => {
 
       describe('complex operations', () => {
         it.each`
-          query                                     | result
-          ${'app OR water NOT apple'}               | ${['watermelon']}
-          ${'apple AND orange OR orange AND melon'} | ${['apple', 'orange', 'melon']}
+          query                                        | result
+          ${'app OR water NOT apple'}                  | ${['watermelon']}
+          ${'apple OR orange OR melon NOT watermelon'} | ${['apple', 'orange', 'melon']}
         `('given "$query" returns $result', ({ query, result }) => {
           expect(stringMiddleware(query, context)).toIncludeSameMembers(result)
         })
