@@ -1,10 +1,7 @@
 import Node from './node'
 
 function isBooleanOperator(word: string) {
-  const lowerCaseWord = word.toLowerCase()
-  return (
-    lowerCaseWord === 'and' || lowerCaseWord === 'or' || lowerCaseWord === 'not'
-  )
+  return word === 'AND' || word === 'OR' || word === 'NOT'
 }
 
 export default function parse(input: string) {
