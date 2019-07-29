@@ -4,11 +4,14 @@ A recreation of the MacOS [Spotlight](https://support.apple.com/en-us/HT204014) 
 
 ## Features
 
+### Autocomplete
+
+- [X] Performs basic autocomplete
+- [X] Interprets boolean operators &mdash; AND, OR, NOT
+
 ### File Search
 
-- [X] Performs basic file search
 - [ ] Narrows search using file metadata; e.g. `kind:folders` will only search folders
-- [ ] Interprets boolean operators &mdash; AND, OR, NOT
 
 ### Calculations
 
