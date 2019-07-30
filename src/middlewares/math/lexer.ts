@@ -49,6 +49,10 @@ function isOperator(char: string) {
   return /[\+\-\*\/]/.test(char)
 }
 
+function isStartOfNegativeNumber(char: string, prev: string) {
+  return char === '-' && (isOperator(prev) || isLeftParen(prev) || !prev.length)
+}
+
 function isLeftParen(char: string) {
   return /[\(\[]/.test(char)
 }
@@ -68,7 +72,7 @@ export default function lex(input: string): Token[] {
   // iterate through each character
   for (const char of trimmedInput) {
     // if a number, push the number to buffer
-    if (isNumber(char)) {
+    if (isNumber(char) || isStartOfNegativeNumber(char, prev)) {
       numBuffer.push(char)
     } else {
       // once we have something not a number,
@@ -82,19 +86,12 @@ export default function lex(input: string): Token[] {
       }
 
       if (isOperator(char)) {
-        if (char === '-' && (isOperator(prev) || !prev.length)) {
-          // we're beginning a negative number,
-          // so add to number buffer
-          numBuffer.push(char)
-        } else {
-          // otherwise add new operator token
-          result.push({
-            type: 'operator',
-            value: char,
-            precedence: precedenceTable[char],
-            associativity: associativityTable[char]
-          })
-        }
+        result.push({
+          type: 'operator',
+          value: char,
+          precedence: precedenceTable[char],
+          associativity: associativityTable[char]
+        })
       }
 
       if (isLeftParen(char)) {

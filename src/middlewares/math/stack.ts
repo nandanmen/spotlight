@@ -1,8 +1,8 @@
 export default class Stack<T> {
   private items: T[]
 
-  constructor() {
-    this.items = []
+  constructor(...initialItems: T[]) {
+    this.items = [...initialItems]
   }
 
   push(item: T) {
@@ -12,5 +12,9 @@ export default class Stack<T> {
 
   pop() {
     return this.items.pop()
+  }
+
+  peek() {
+    return this.items[this.items.length - 1]
   }
 }
