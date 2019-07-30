@@ -11,7 +11,8 @@ describe('math middleware', () => {
       ${'3 + 4 x 2 / ( 1 - 5 ) ^ 2 ^ 3'} | ${[3, 4, 2, 'x', 1, 5, '-', 2, 3, '^', '^', '/', '+']}
     `(`parses $input into $result`, ({ input, result }) => {
       const tokens = lex(input)
-      expect(parse(tokens)).toEqual(result)
+      const normalizedResult = parse(tokens).map(token => token.value)
+      expect(normalizedResult).toEqual(result)
     })
   })
 })

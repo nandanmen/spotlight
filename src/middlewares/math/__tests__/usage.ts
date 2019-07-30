@@ -20,7 +20,7 @@ describe('math middleware', () => {
     describe('complex arithmetic', () => {
       it.each`
         input                         | result
-        ${'1/2*((-2(1+2))10)'}        | ${-30}
+        ${'1/2*((-2*(1+2))*10)'}      | ${-30}
         ${'1800/10*((12-6)+(24-12))'} | ${3240}
       `(`given $input returns $result`, ({ input, result }) => {
         expect(mathMiddleware(input)).toEqual(result)

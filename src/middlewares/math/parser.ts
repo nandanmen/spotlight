@@ -17,23 +17,23 @@ function shouldPopFromStack(token: OperatorToken, stack: Stack<any>) {
  * Parses the given tokens into an RPN string.
  * Implements the Shunting-Yard algorithm.
  */
-export default function parse(input: Token[]): (string | number)[] {
-  const result = [] as (string | number)[]
+export default function parse(input: Token[]): Token[] {
+  const result = [] as Token[]
   const operators = new Stack<Token>()
 
   input.forEach(token => {
     if (token.type === 'number') {
-      result.push(token.value)
+      result.push(token)
     } else if (token.type === 'operator') {
       while (shouldPopFromStack(token as OperatorToken, operators)) {
-        result.push(operators.pop()!.value)
+        result.push(operators.pop()!)
       }
       operators.push(token)
     } else if (token.type === 'left_paren') {
       operators.push(token)
     } else if (token.type === 'right_paren') {
       while (operators.peek() && operators.peek().type !== 'left_paren') {
-        result.push(operators.pop()!.value)
+        result.push(operators.pop()!)
       }
       if (operators.peek() && operators.peek().type === 'left_paren') {
         operators.pop()
@@ -42,7 +42,7 @@ export default function parse(input: Token[]): (string | number)[] {
   })
 
   while (operators.peek()) {
-    result.push(operators.pop()!.value)
+    result.push(operators.pop()!)
   }
 
   return result
