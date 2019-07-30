@@ -46,7 +46,7 @@ function isNumber(char: string) {
 }
 
 function isOperator(char: string) {
-  return /[\+\-\*\/]/.test(char)
+  return /[\+\-\*\/\^\x]/.test(char)
 }
 
 function isStartOfNegativeNumber(char: string, prev: string) {
