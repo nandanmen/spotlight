@@ -15,8 +15,8 @@ A recreation of the MacOS [Spotlight](https://support.apple.com/en-us/HT204014) 
 
 ### Calculations
 
-- [ ] Performs basic arithmetic
-- [ ] Interprets common math functions such as `sqrt`, `log`, `exp` and the trignometric functions `sin`, `cos`, `tan`
+- [X] Performs basic arithmetic
+- [X] Interprets common math functions such as `sqrt`, `log`, `exp` and the trignometric functions `sin`, `cos`, `tan`
 
 ### Definitions and Translations
 

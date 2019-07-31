@@ -79,5 +79,31 @@ describe('math middleware', () => {
         }
       ])
     })
+
+    it('interprets functions', () => {
+      const tokens = lex('max(2, 3)')
+      expect(tokens).toEqual([
+        {
+          type: 'function',
+          value: 'max'
+        },
+        {
+          type: 'left_paren',
+          value: '('
+        },
+        {
+          type: 'number',
+          value: 2
+        },
+        {
+          type: 'number',
+          value: 3
+        },
+        {
+          type: 'right_paren',
+          value: ')'
+        }
+      ])
+    })
   })
 })

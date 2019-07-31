@@ -8,8 +8,9 @@ function shouldPopFromStack(token: OperatorToken, stack: Stack<any>) {
 
   return (
     top.type !== 'left_paren' &&
-    (token.precedence < top.precedence ||
-      (token.precedence === top.precedence && top.associativity === 'left'))
+    (top.type === 'function' ||
+      (token.precedence < top.precedence ||
+        (token.precedence === top.precedence && top.associativity === 'left')))
   )
 }
 
@@ -24,6 +25,8 @@ export default function parse(input: Token[]): Token[] {
   input.forEach(token => {
     if (token.type === 'number') {
       result.push(token)
+    } else if (token.type === 'function') {
+      operators.push(token)
     } else if (token.type === 'operator') {
       while (shouldPopFromStack(token as OperatorToken, operators)) {
         result.push(operators.pop()!)

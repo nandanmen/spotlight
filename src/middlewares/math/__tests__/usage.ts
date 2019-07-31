@@ -26,5 +26,9 @@ describe('math middleware', () => {
         expect(mathMiddleware(input)).toEqual(result)
       })
     })
+
+    it('evaluates functions', () => {
+      expect(mathMiddleware('sin(max(450, 451))')).toEqual(Math.sin(451))
+    })
   })
 })

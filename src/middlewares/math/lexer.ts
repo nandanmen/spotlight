@@ -20,7 +20,6 @@ const precedenceTable: Record<string, number> = {
   '+': 2,
   '-': 2,
   '/': 3,
-  x: 3,
   '*': 3,
   '^': 4
 }
@@ -29,7 +28,6 @@ const associativityTable: Record<string, 'left' | 'right'> = {
   '+': 'left',
   '-': 'left',
   '/': 'left',
-  x: 'left',
   '*': 'left',
   '^': 'right'
 }
@@ -61,6 +59,10 @@ function isRightParen(char: string) {
   return /[\)\]]/.test(char)
 }
 
+function isLetter(char: string) {
+  return /[a-z]/gi.test(char)
+}
+
 export default function lex(input: string): Token[] {
   // remove spaces from input
   const trimmedInput = removeSpace(input)
@@ -68,6 +70,7 @@ export default function lex(input: string): Token[] {
   const result = [] as (Token | OperatorToken)[]
 
   let numBuffer = []
+  let funcBuffer = []
   let prev = ''
   // iterate through each character
   for (const char of trimmedInput) {
@@ -85,27 +88,39 @@ export default function lex(input: string): Token[] {
         numBuffer = []
       }
 
-      if (isOperator(char)) {
-        result.push({
-          type: 'operator',
-          value: char,
-          precedence: precedenceTable[char],
-          associativity: associativityTable[char]
-        })
-      }
+      if (isLetter(char)) {
+        funcBuffer.push(char)
+      } else {
+        if (funcBuffer.length) {
+          result.push({
+            type: 'function',
+            value: funcBuffer.join('')
+          })
+          funcBuffer = []
+        }
 
-      if (isLeftParen(char)) {
-        result.push({
-          type: 'left_paren',
-          value: char
-        })
-      }
+        if (isOperator(char)) {
+          result.push({
+            type: 'operator',
+            value: char,
+            precedence: precedenceTable[char],
+            associativity: associativityTable[char]
+          })
+        }
 
-      if (isRightParen(char)) {
-        result.push({
-          type: 'right_paren',
-          value: char
-        })
+        if (isLeftParen(char)) {
+          result.push({
+            type: 'left_paren',
+            value: char
+          })
+        }
+
+        if (isRightParen(char)) {
+          result.push({
+            type: 'right_paren',
+            value: char
+          })
+        }
       }
     }
     prev = char
