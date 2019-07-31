@@ -1,4 +1,5 @@
 import Spotlight from '../spotlight'
+import { math } from '../middlewares'
 
 describe('spotlight', () => {
   describe('system', () => {
@@ -14,6 +15,16 @@ describe('spotlight', () => {
       const spotlight = new Spotlight([], ...middlewares)
       spotlight.getResults('')
       middlewares.forEach(fn => expect(fn).toHaveBeenCalled())
+    })
+
+    it('is extendable', () => {
+      const spotlight = new Spotlight([])
+
+      let results = spotlight.getResults('3 + 3')
+      expect(results).toBeEmpty()
+
+      results = spotlight.extend(math).getResults('3 + 3')
+      expect(results).toContain(6)
     })
   })
 

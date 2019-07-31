@@ -32,7 +32,7 @@ const operations: Record<string, (a: number, b: number) => number> = {
   tan
 }
 
-export default function evaluate(postfix: Token[]) {
+export default function evaluate(postfix: Token[]): number | null {
   const stack = new Stack<Token>()
 
   postfix.forEach(token => {
@@ -49,5 +49,6 @@ export default function evaluate(postfix: Token[]) {
     }
   })
 
-  return stack.pop()!.value
+  const result = stack.pop()
+  return result ? Number(result.value) : null
 }

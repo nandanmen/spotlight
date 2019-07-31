@@ -1,1 +1,1 @@
-export type Middleware<T> = (input: string, context: T[]) => T[]
+export type Middleware = (input: string, context: any[]) => any[]
