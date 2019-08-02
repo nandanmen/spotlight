@@ -2,6 +2,12 @@
 
 A recreation of the MacOS [Spotlight](https://support.apple.com/en-us/HT204014) search feature.
 
+## Install
+
+```
+npm install @narendras/spotlight
+```
+
 ## Features
 
 ### Autocomplete

@@ -6,7 +6,7 @@ class Spotlight {
   middlewares: Middleware[]
 
   constructor(searchContext: any[], ...middlewares: Middleware[]) {
-    const defaultMiddleware: Middleware[] = [defaults.string]
+    const defaultMiddleware: Middleware[] = [defaults.string, defaults.math]
 
     this.searchContext = searchContext
     this.middlewares = defaultMiddleware.concat(middlewares)
