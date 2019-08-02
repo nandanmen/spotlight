@@ -53,6 +53,8 @@ You can add your own middleware using the `extend` method. It takes the new midd
 
 ```js
 const spotlight = new Spotlight([])
+spotlight.getResults('') // returns []
+
 spotlight.extend((input, context) => ['hello world!'])
 spotlight.getResults('') // returns ['hello world!']
 ```
