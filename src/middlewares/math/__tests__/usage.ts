@@ -6,6 +6,10 @@ describe('math middleware', () => {
       expect(mathMiddleware('abc')).toBeEmpty()
     })
 
+    it('returns empty array if function has no arguments', () => {
+      expect(mathMiddleware('sin()')).toBeEmpty()
+    })
+
     it('performs simple arithmetic', () => {
       expect(mathMiddleware('3 + 3')).toContain(6)
     })
