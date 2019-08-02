@@ -1,11 +1,14 @@
 # Spotlight
 
-A recreation of the MacOS [Spotlight](https://support.apple.com/en-us/HT204014) search feature.
+A recreation of the MacOS [Spotlight](https://support.apple.com/en-us/HT204014) search feature. This repo contains the core logic that can be used with any view.
 
-## Install
+## Usage
 
-```
-npm install @narendras/spotlight
+The package exposes a `Spotlight` class that must be instantiated with a search context, which is an array of items that spotlight is going to search in. You can then call its only method `getResults` which takes an input string as an argument. It uses this argument to filter through your search context.
+
+```js
+const spotlight = new Spotlight(['apple', 'orange', 'melon', 'watermelon'])
+spotlight.getResults('melon') // returns ['melon', 'watermelon']
 ```
 
 ## Features
