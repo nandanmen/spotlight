@@ -11,6 +11,10 @@ describe('string middleware', () => {
       ])
     })
 
+    it('escapes regex special characters', () => {
+      expect(stringMiddleware('sin(', context)).toBeEmpty()
+    })
+
     describe('boolean operators', () => {
       it('interprets NOT', () => {
         expect(stringMiddleware('a NOT an', context)).toIncludeSameMembers([

@@ -1,1 +1,3 @@
-export { default as Spotlight } from './spotlight'
+import Spotlight from './spotlight'
+
+export default Spotlight

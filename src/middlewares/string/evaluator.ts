@@ -1,7 +1,11 @@
 import Node from './node'
 
+function escape(string: string) {
+  return string.replace(/[-[\]{}()*+!<=:?.\/\\^$|#\s,]/g, '\\$&')
+}
+
 function match<T>(input: string, context: T[]) {
-  return context.filter(value => new RegExp(input).test(String(value)))
+  return context.filter(value => new RegExp(escape(input)).test(String(value)))
 }
 
 function union<T>(arrOne: T[], arrTwo: T[]) {
