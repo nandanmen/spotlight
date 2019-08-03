@@ -37,6 +37,7 @@ export default function evaluate(postfix: Token[]): number | null {
 
   postfix.forEach(token => {
     if (token.type === 'operator' || token.type === 'function') {
+      if (!stack.peek() || typeof stack.peek().value !== 'number') return null
       const secondOperand = +stack.pop()!.value
       const firstOperand = stack.peek() ? +stack.pop()!.value : 0
       const performOperation = operations[token.value]
@@ -50,5 +51,5 @@ export default function evaluate(postfix: Token[]): number | null {
   })
 
   const result = stack.pop()
-  return result ? Number(result.value) : null
+  return result && typeof result.value === 'number' ? result.value : null
 }
