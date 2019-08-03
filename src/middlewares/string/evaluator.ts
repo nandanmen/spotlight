@@ -9,15 +9,15 @@ function match<T>(input: string, context: T[]) {
 }
 
 function union<T>(arrOne: T[], arrTwo: T[]) {
-  return [...arrOne, ...arrTwo]
+  return [...new Set([...arrOne, ...arrTwo])]
 }
 
 function intersection<T>(arrOne: T[], arrTwo: T[]) {
-  return arrOne.filter(v => arrTwo.includes(v))
+  return [...new Set(arrOne.filter(v => arrTwo.includes(v)))]
 }
 
 function difference<T>(arrOne: T[], arrTwo: T[]) {
-  return arrOne.filter(v => !arrTwo.includes(v))
+  return [...new Set(arrOne.filter(v => !arrTwo.includes(v)))]
 }
 
 export default function evaluate<T>(root: Node, context: T[]): T[] {
