@@ -1,4 +1,4 @@
-import { Middleware } from './types'
+import { Middleware, Result } from './types'
 import * as defaults from './middlewares'
 
 class Spotlight {
@@ -17,10 +17,10 @@ class Spotlight {
     return this
   }
 
-  getResults(input: string): any[] {
+  getResults(input: string): Result[] {
     return this.middlewares.reduce(
       (acc, fn) => [...fn(input, this.searchContext), ...acc],
-      [] as any[]
+      [] as Result[]
     )
   }
 }

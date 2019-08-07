@@ -1,6 +1,7 @@
 import lex from './lexer'
 import parse from './parser'
 import evaluate from './evaluator'
+import { Result } from 'types'
 
 /**
  * TODO: Add guard for non-math expression input
@@ -10,7 +11,7 @@ import evaluate from './evaluator'
 export default function mathMiddleware(
   input: string,
   context?: any[]
-): number[] {
+): Result[] {
   const result = evaluate(parse(lex(input)))
-  return typeof result === 'number' ? [result] : []
+  return typeof result === 'number' ? [{ score: 100, value: result }] : []
 }
