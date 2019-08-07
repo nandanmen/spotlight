@@ -5,6 +5,9 @@ function escape(string: string) {
   return string.replace(/[-[\]{}()*+!<=:?.\/\\^$|#\s,]/g, '\\$&')
 }
 
+/**
+ * TODO: Change this so it uses a string-similarity algorithm.
+ */
 function match(input: string, context: any[]): Result[] {
   return context
     .filter(value => new RegExp(escape(input)).test(String(value)))

@@ -18,10 +18,11 @@ class Spotlight {
   }
 
   getResults(input: string): Result[] {
-    return this.middlewares.reduce(
+    const results = this.middlewares.reduce(
       (acc, fn) => [...fn(input, this.searchContext), ...acc],
       [] as Result[]
     )
+    return results.sort((a, b) => a.value - b.value)
   }
 }
 
