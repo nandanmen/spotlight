@@ -17,12 +17,17 @@ class Spotlight {
     return this
   }
 
+  removeMiddleware(name: string) {
+    this.middlewares = this.middlewares.filter(fn => fn.name !== name)
+    return this
+  }
+
   getResults(input: string): Result[] {
     const results = this.middlewares.reduce(
       (acc, fn) => [...fn(input, this.searchContext), ...acc],
       [] as Result[]
     )
-    return results.sort((a, b) => a.value - b.value)
+    return results.sort((a, b) => a.score - b.score)
   }
 }
 
