@@ -6,6 +6,6 @@ function stringMiddleware(input: string, context: any[]): Result[] {
   return evaluate(parse(input), context)
 }
 
-stringMiddleware.name = 'string'
+stringMiddleware.spotlightName = 'string'
 
 export default stringMiddleware

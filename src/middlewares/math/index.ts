@@ -13,6 +13,6 @@ function mathMiddleware(input: string, context?: any[]): Result[] {
   return typeof result === 'number' ? [{ score: 100, value: result }] : []
 }
 
-mathMiddleware.name = 'math'
+mathMiddleware.spotlightName = 'math'
 
 export default mathMiddleware

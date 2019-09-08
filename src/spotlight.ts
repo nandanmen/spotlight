@@ -18,7 +18,7 @@ class Spotlight {
   }
 
   removeMiddleware(name: string) {
-    this.middlewares = this.middlewares.filter(fn => fn.name !== name)
+    this.middlewares = this.middlewares.filter(fn => fn.spotlightName !== name)
     return this
   }
 
